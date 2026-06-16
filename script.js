@@ -83,7 +83,7 @@
     _flipInternal();
   }
   function _flipInternal() {
-    const audio = new Audio('freesound_community-flipcard-91468.mov');
+    const audio = new Audio('freesound_community-flipcard-91468.mp3');
     audio.volume = currentVolume;
     audio.play();
   }
