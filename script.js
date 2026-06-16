@@ -8,6 +8,9 @@
     len: Math.random()*60+20, speed: Math.random()*3+1.5,
     size: Math.random()*1.5+0.3, opacity: Math.random()*0.6+0.2
   }));
+
+  let animId = null;
+
   function draw(){
     ctx.fillStyle='#0a0a1a'; ctx.fillRect(0,0,canvas.width,canvas.height);
     stars.forEach(s=>{
@@ -24,8 +27,17 @@
         Math.random()<.5?(s.x=Math.random()*canvas.width,s.y=-s.len):(s.x=-s.len,s.y=Math.random()*canvas.height);
       }
     });
-    requestAnimationFrame(draw);
+    animId = requestAnimationFrame(draw);
   }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (animId) { cancelAnimationFrame(animId); animId = null; }
+    } else {
+      if (!animId) draw();
+    }
+  });
+
   draw();
 
   // audio
