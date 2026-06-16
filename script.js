@@ -26,6 +26,10 @@
     });
     requestAnimationFrame(draw);
   }
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) draw();
+  });
+
   draw();
 
   // audio
